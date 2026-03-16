@@ -1,0 +1,12 @@
+com\example\demoproduct\model\Account.class
+com\example\demoproduct\repository\AccountRepository.class
+com\example\demoproduct\service\ProductService.class
+com\example\demoproduct\controller\HomeController.class
+com\example\demoproduct\service\AccountService.class
+com\example\demoproduct\controller\ProductController.class
+com\example\demoproduct\DemoproductApplication.class
+com\example\demoproduct\model\Product.class
+com\example\demoproduct\repository\ProductRepository.class
+com\example\demoproduct\BCryptTest.class
+com\example\demoproduct\config\SecurityConfig.class
+com\example\demoproduct\model\Role.class

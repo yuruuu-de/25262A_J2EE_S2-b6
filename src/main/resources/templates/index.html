@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5 bg-light">
+<div class="card shadow">
+    <div class="card-header bg-primary text-white d-flex justify-content-between">
+        <h3 class="mb-0">Product List</h3>
+        <a th:href="@{/products/new}" class="btn btn-light btn-sm">Create New Product</a>
+    </div>
+    <div class="card-body">
+        <form th:action="@{/products}" method="get" class="row g-3 mb-4">
+            <div class="col-auto">
+                <input type="text" name="keyword" th:value="${keyword}" class="form-control"
+                       placeholder="Search by name...">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-secondary">Search</button>
+                <a th:href="@{/products}" class="btn btn-outline-secondary">Clear</a>
+            </div>
+        </form>
+
+        <table class="table table-hover align-middle">
+            <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="p : ${listProducts}">
+                <td th:text="${p.id}"></td>
+                <td th:text="${p.name}" class="fw-bold"></td>
+                <td>
+                    <img th:src="${#strings.isEmpty(p.image) ? 'https://via.placeholder.com/60' : p.image}"
+                         width="60" class="img-thumbnail rounded" alt="product">
+                </td>
+                <td th:text="${p.price} + ' $'"></td>
+                <td th:text="${p.categoryName}"></td>
+                <td>
+                    <a th:href="@{/products/edit/{id}(id=${p.id})}" class="btn btn-warning btn-sm">Edit</a>
+                    <a th:href="@{/products/delete/{id}(id=${p.id})}" class="btn btn-danger btn-sm"
+                       onclick="return confirm('Delete this product?')">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
+
